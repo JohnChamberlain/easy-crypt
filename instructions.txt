@@ -1,0 +1,89 @@
+Simple Encryption
+by John S. Chamberlain
+Thursday, 14 November 2024
+
+This is a system for allowing a user to easily encrypt a file on any Linux or Unix-based systems and send it to a designated person or organization.
+
+-----------------------------------
+Instructions for Setup
+-----------------------------------
+
+1. Verify that you have gcc and OpenSSL 3.0 installed on your system.
+
+2. Compile the source code file named encrypt4_xyz.c (or something similar)
+
+3. Add the resulting executable file to your path
+
+-----------------------------------
+Instructions for Use
+-----------------------------------
+
+Run the executable and give it as an argument the name or path to the file you wish to encrypt. For example:
+
+	encrypt4_xyz my-data.xls
+
+The code "xyz" is called the "key identifier" and will be specific to the person, organization or project for which you are encrypting it. Running this command will produce a file with the designated extension that is the encrypted file. For example: my-data.xls.xyz
+
+The presence of the key identifier extension to the filename indicates that it is encrypted.
+
+You can now email or otherwise transmit the encrypted file to designated party who supplied you with encryption source code.
+
+The executable that you created can be used repeatedly to encrypt as many files as you want, but can only encrypt one file at a time.
+
+-----------------------------------------
+Detailed Instructions for Setup on MacOS
+-----------------------------------------
+
+1. Open a terminal window
+
+2. Make sure you have brew (used to install software) on your system:
+
+	$ brew --version
+
+3. If homebrew is not on your system, then install it:
+
+	$ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+4. Verify that you have gcc installed on your system:
+
+	$ gcc --version
+
+5. If gcc is not installed on your system, install it:
+
+	$ brew install gcc
+
+6. Verify that you have OpenSSL 3.0 installed on your system.
+
+	$ openssl version                // no dashes necessary
+
+7. Compile the source code file named encrypt4_xyz.c (or something similar)
+
+	$ gcc -o encrypt4_xyz encrypt4_xyz.c -lssl -lcrypto  // where "encrypt4_xyz.c" is the name of your source code file
+
+	The first filename to this command is the name of the executable you want to create. Normally it will have the same name as your .c file without the ".c" at the end.
+	The second filename is the source code file which your counterparty provided to you. It will normally be named encrypt4_[identifier].c or encrypt4_[identifier]_remote.c
+	If the source code file has the substring "_remote" in it, you can and should remove that part of the file name (because the file is local to your system, not remote anymore).
+	For example, assuming that your counterparty supplied you with a file named "encrypt4_xyz_remote.c" you should rename the file as follows:
+
+	$ mv encrypt4_xyz_remote.c encrypt4_xyz.c
+
+8. Use the resulting executable as you wish:
+
+	8.1 To use the executable in the current directory where it is now, run it with the current directory specifier. For example:
+
+		$ ./encrypt4_xyz my-file.xls
+
+	8.2 To use the executable from any directory but leave it where it is, then add the path to the file to your system path:
+
+		$ nano ~/.zshrc
+		export PATH="/path/to/directory:$PATH"	              // where /path/to/directory is the directory and filename of the executable
+		[press CTRL+O to save and CTRL+X to exit]
+		$ source ~/.zshrc
+		$ which encrypt4_xyz                                  // verify that your system is finding the executable correctly
+
+	8.3 To use the executable generally in the system permanently, add it to your /usr/local/bin directory. For example:
+
+		$ sudo cp encrypt4_xyz /usr/local/bin/
+
+
+
