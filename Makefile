@@ -34,7 +34,7 @@ encrypt-has-key.c: encrypt.c $(PUB_KEY_FILE)
 			print $$0; \
 		} \
 	}' encrypt.c > encrypt-has-key.c
-	@sed -i "s/\[EXT\]/$(EXT)/g" encrypt-has-key.c
+	@sed -i '' "s/\[EXT\]/$(EXT)/g" encrypt-has-key.c
 
 # Generate decrypt-has-key.c by inserting private key content specifically at the placeholder
 decrypt-has-key.c: decrypt.c $(PRIV_KEY_FILE)
@@ -52,7 +52,7 @@ decrypt-has-key.c: decrypt.c $(PRIV_KEY_FILE)
 			print $$0; \
 		} \
 	}' decrypt.c > decrypt-has-key.c
-	@sed -i "s/\[EXT\]/$(EXT)/g" decrypt-has-key.c
+	@sed -i '' "s/\[EXT\]/$(EXT)/g" decrypt-has-key.c
 
 # Compile encrypt binary using encrypt-has-key.c
 encrypt: encrypt-has-key.c
