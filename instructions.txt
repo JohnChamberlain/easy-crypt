@@ -1,11 +1,12 @@
 Simple Encryption
 by John S. Chamberlain
 Thursday, 14 November 2024
+Tuesday, 23 June 2026
 
 This is a system for allowing a user to easily encrypt a file on any Linux or Unix-based systems and send it to a designated person or organization.
 
 -----------------------------------
-Instructions for Setup
+Instructions for the Sender
 -----------------------------------
 
 1. Verify that you have gcc and OpenSSL 3.0 installed on your system.
